@@ -45,8 +45,6 @@
 - [initialPlayerParams](#initialPlayerParams)
 - [webViewStyle](#webViewStyle)
 - [webViewProps](#webViewProps)
-- [forceAndroidAutoplay](#forceAndroidAutoplay)
-- [allowWebViewZoom](#allowWebViewZoom)
 
 ### Ref functions
 
@@ -57,10 +55,6 @@
 - [getPlaybackRate](#getPlaybackRate)
 - [getAvailablePlaybackRates](#getAvailablePlaybackRates)
 - [seekTo](#seekTo)
-
-### module methods
-
-- [getYoutubeMeta](#getYoutubeMeta)
 
 # Reference
 
@@ -128,13 +122,10 @@ Starts the playlist from the given index
 **_Boolean_**
 
 Flag to tell the player to play or pause the video.
-
 Make sure you match this flag `onChangeState` to handle user pausing
 the video from the youtube player UI
 
 > **note on autoPlay**: The HTML5 `<video>` element, in certain mobile browsers (such as Chrome and Safari), only allows playback to take place if it's initiated by a user interaction (such as tapping on the player).
-
-However, the webview provides APIs to overcome this and will allow auto play in most cases. Use the [forceAndroidAutoplay](#forceAndroidAutoplay) prop if auto play still doesn't work. (usually is affected by older android devices)
 
 ## onChangeState
 
@@ -245,16 +236,6 @@ A style prop that will be given to the webview
 
 Props that are supplied to the underlying webview (react-native-webview). A full list of props can be found [here](https://github.com/react-native-community/react-native-webview/blob/master/docs/Reference.md#props-index)
 
-## forceAndroidAutoplay
-
-Changes user string to make autoplay work on the iframe player for some android devices.
-
-userAgent string - `Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/77.0.3865.90 Safari/537.36';`
-
-## allowWebViewZoom
-
-Controls whether the embedded webview allows user to zoom in. Defaults to `false`
-
 # Ref functions
 
 usage -
@@ -320,7 +301,7 @@ returns a promise that resolves to a list of available playback rates.
 
 The array of numbers are ordered from slowest to fastest playback speed. Even if the player does not support variable playback speeds, the array should always contain at least one value (1).
 
-## seekTo
+# seekTo
 
 `seekTo(seconds:Number, allowSeekAhead:Boolean):Void`
 
@@ -334,40 +315,3 @@ The `allowSeekAhead` parameter determines whether the player will make a new req
 We recommend that you set this parameter to false while the user drags the mouse along a video progress bar and then set it to true when the user releases the mouse. This approach lets a user scroll to different points of a video without requesting new video streams by scrolling past unbuffered points in the video. When the user releases the mouse button, the player advances to the desired point in the video and requests a new video stream if necessary.
 
 https://developers.google.com/youtube/iframe_api_reference#seekTo
-
-# Module methods
-
-## getYoutubeMeta
-
-`getYoutubeMeta(videoId: String): Promise<youtubeMeta>`
-
-Fetch metadata of a youtube video using the oEmbed Spec - https://oembed.com/#section7
-
-metadata returned -
-
-| field            | type   | explanation                                        |
-| ---------------- | ------ | -------------------------------------------------- |
-| author_name      | String | The name of the author/owner of the video.         |
-| author_url       | String | youtube channel link of the video                  |
-| height           | Number | The height in pixels required to display the HTML. |
-| html             | String | The HTML required to embed a video player.         |
-| provider_name    | String | The name of the resource provider.                 |
-| provider_url     | String | The url of the resource provider.                  |
-| thumbnail_height | Number | The height of the video thumbnail.                 |
-| thumbnail_url    | String | The url of the resource provider.                  |
-| thumbnail_width  | Number | The width of the video thumbnail.                  |
-| title            | String | youtube video title                                |
-| type             | String | The oEmbed version number.                         |
-| version          | String | The resource type.                                 |
-| width            | Number | The width in pixels required to display the HTML.  |
-
-example -
-
-```javascript
-import {Alert} from 'react-native';
-import {getYoutubeMeta} from 'react-native-youtube-iframe';
-
-getYoutubeMeta('sNhhvQGsMEc').then(meta => {
-  Alert.alert('title of the video : ' + meta.title);
-});
-```

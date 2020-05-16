@@ -1,5 +1,3 @@
-import YoutubeIframe from './src/YoutubeIframe';
-import {getYoutubeMeta} from './src/oEmbed';
+import YoutubeIframe from "./src/YoutubeIframe";
 
 export default YoutubeIframe;
-export {getYoutubeMeta};

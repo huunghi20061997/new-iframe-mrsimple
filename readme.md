@@ -1,36 +1,14 @@
 # React Native Youtube iframe
 
-![npm](https://img.shields.io/npm/v/react-native-youtube-iframe?style=for-the-badge) ![npm](https://img.shields.io/npm/dm/react-native-youtube-iframe?style=for-the-badge)
-
-A wrapper of the Youtube IFrame player API build for react native.
-
-- ✅ Works seamlessly on both ios and android platforms
-- ✅ Does not rely on the native youtube service on android (prevents unexpected crashes, works on phones without the youtube app)
-- ✅ Uses the webview player which is known to be more stable compared to the native youtube app
-- ✅ Access to a vast API provided through the iframe youtube API
-- ✅ Supports multiple youtube player instances in a single page
-- ✅ Fetch basic video metadata without API keys (uses oEmbed)
-- ✅ Works on modals and overlay components
-- ✅ Expo support
-
-![ios](./doc/demo.gif?raw=true 'ios')
+A wrapper of the Youtube IFrame player API build for react native. A fully web based implementation with access to most APIs provided on the web.
 
 ## Prerequisite
 
-This package uses react-hooks and therefore will need **react-native `0.59` or above**
-
-(recommended - react native version - `0.60` or above)
+This package uses react-hooks and therefore will need **react-native `0.59` and above**
 
 ## Installation
 
-1. First install `react-native-webview`.
-
-- Bare React Native app - [Instructions](https://github.com/react-native-community/react-native-webview/blob/master/docs/Getting-Started.md)
-
-  - React Native version **`0.60` and above**, install the latest version of react-native-webview
-  - React Native version **below `0.60`**, react-native-webview version `6.11.1` is the last version that supports it.
-
-- Expo Managed App - [Instructions](https://docs.expo.io/versions/latest/sdk/webview/)
+1. First install `react-native-webview`. [Instructions here](https://github.com/react-native-community/react-native-webview/blob/master/docs/Getting-Started.md)
 
 2. Run - `npm install react-native-youtube-iframe`
 
@@ -58,15 +36,18 @@ const [playing, setPlaying] = useState(true);
   volume={50}
   playbackRate={1}
   playerParams={{
+    preventFullScreen: true,
     cc_lang_pref: "us",
     showClosedCaptions: true
   }}
 />
 ```
 
+![ios](./doc/demo.gif?raw=true 'ios')
+
 ## API reference
 
-**[Click here for full reference](./doc)**
+[Click here for full reference here](./doc)
 
 list of available APIs -
 
@@ -85,9 +66,6 @@ list of available APIs -
 - playbackRate
 - onPlaybackRateChange
 - initialPlayerParams
-- webViewStyle
-- webViewProps
-- allowWebViewZoom
 
 ### Ref functions
 
@@ -98,10 +76,6 @@ list of available APIs -
 - getPlaybackRate
 - getAvailablePlaybackRates
 - seekTo
-
-## methods
-
-- getYoutubeMeta
 
 ## Contributing
 

@@ -39,6 +39,7 @@ player.seekTo(${seconds}, ${allowSeekAhead})
   )},
     index: ${startIndex || 0}}); true;`,
 };
+
 export const MAIN_SCRIPT = (
   videoId,
   playList,
@@ -61,9 +62,6 @@ export const MAIN_SCRIPT = (
   <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
     <style>
-      body {
-        margin: 0;
-      }
       .container {
         position: relative;
         width: 100%;
@@ -95,6 +93,8 @@ export const MAIN_SCRIPT = (
       var player;
       function onYouTubeIframeAPIReady() {
         player = new YT.Player('player', {
+          height: '1000',
+          width: '1000',
           videoId: '${videoId || ''}',
           playerVars: {
             playsinline: 1,
